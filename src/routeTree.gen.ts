@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EbooksGuideIdRouteImport } from './routes/ebooks.$guideId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EbooksGuideIdRoute = EbooksGuideIdRouteImport.update({
+  id: '/ebooks/$guideId',
+  path: '/ebooks/$guideId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/ebooks/$guideId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ebooks/$guideId'
+  id: '__root__' | '/' | '/ebooks/$guideId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EbooksGuideIdRoute: typeof EbooksGuideIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ebooks/$guideId': {
+      id: '/ebooks/$guideId'
+      path: '/ebooks/$guideId'
+      fullPath: '/ebooks/$guideId'
+      preLoaderRoute: typeof EbooksGuideIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EbooksGuideIdRoute: EbooksGuideIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,24 @@
+export const guides = [
+  { id: 'transfer-factor', title: 'Transfer Factor: una lectura informada', cover: 'Transfer Factor', subtitle: 'Ingredientes, etiquetas y preguntas para tu profesional de salud.', sections: [
+    { title: 'Un suplemento no es un medicamento', text: 'Los suplementos alimenticios complementan la alimentación. No sustituyen una dieta variada, atención médica ni tratamientos prescritos. Ningún contenido de esta guía promete prevenir, tratar o curar enfermedades.' },
+    { title: 'Qué revisar en Transfer Factor Plus', text: 'La ficha oficial de 4Life describe una fórmula con extractos de calostro bovino y huevo, una mezcla de hongos y zinc. La composición puede variar según el mercado y la presentación. Revisa siempre la etiqueta del envase que vas a comprar; no deduzcas ingredientes ni dosis de fotografías publicitarias.' },
+    { title: 'Alergias e interacciones', text: 'La procedencia de algunos ingredientes hace importante consultar sobre alergias a leche o huevo. Si tomas medicamentos, estás embarazada, amamantas o tienes una condición médica, consulta a un profesional de salud antes de consumir suplementos. No suspendas medicamentos por recomendaciones comerciales.' },
+    { title: 'Preguntas antes de comprar', text: '¿Cuál es la presentación disponible en mi país? ¿Qué ingredientes y alérgenos declara? ¿Cuál es la dosis de la etiqueta? ¿Qué evidencia existe en personas y qué resultados son únicamente de laboratorio? ¿Cuál es el costo y la política de devolución?' },
+  ], source: 'https://media2.4life.com/docs/product-profile-sheets/us/english/4life-transfer-factor-plus-trifactor.pdf' },
+  { id: 'riovida', title: 'RioVida y hábitos de bienestar', cover: 'RioVida & bienestar', subtitle: 'Una guía para leer la etiqueta y cuidar tus hábitos cotidianos.', sections: [
+    { title: 'Conocer el producto', text: '4Life presenta RioVida como un suplemento con Transfer Factor y una mezcla de frutas. Consulta la ficha y etiqueta de tu mercado para conocer la fórmula exacta. La disponibilidad y las presentaciones cambian por país.' },
+    { title: 'Frutas, extractos y alimentación', text: 'Una bebida o extracto de frutas no equivale automáticamente a comer fruta entera: la fibra, el azúcar y las porciones pueden diferir. Compara cantidades por porción en la etiqueta. El término antioxidante no significa que el producto cure o prevenga enfermedades.' },
+    { title: 'Hábitos que importan', text: 'Prioriza alimentación variada, agua, descanso y actividad física adaptada a tu situación. Un suplemento no compensa falta de sueño ni reemplaza alimentos. Si tienes restricciones de azúcar u otras indicaciones médicas, revisa la composición con tu profesional de salud.' },
+    { title: 'Una compra informada', text: 'Confirma ingredientes, alérgenos, tamaño de porción, conservación y fecha de vencimiento. Compra desde una fuente identificable y verifica las condiciones de envío. No tomes decisiones de salud basándote únicamente en testimonios.' },
+  ], source: 'https://singapore.4life.com/corp/page/45/transfer-factor-core-2' },
+  { id: 'suplementos', title: 'Tu guía para elegir suplementos', cover: 'Suplementos sin mitos', subtitle: 'Criterios prácticos para una decisión responsable.', sections: [
+    { title: 'Define tu objetivo', text: 'Antes de comprar, identifica qué quieres complementar y si hay una necesidad evaluada por un profesional. Más ingredientes o una dosis mayor no significan un mejor producto.' },
+    { title: 'Lee toda la etiqueta', text: 'Revisa nombre del producto, ingredientes, cantidad por porción, instrucciones, advertencias, alérgenos, fabricante, lote y vencimiento. Verifica que la presentación corresponda a tu país y que el envase esté cerrado.' },
+    { title: 'Distingue evidencia de publicidad', text: 'Un resultado en células o animales no demuestra el mismo efecto en personas. Un testimonio no establece eficacia. Desconfía de promesas de curación, resultados garantizados o mensajes que recomiendan abandonar tratamientos.' },
+    { title: 'Organiza tu consulta', text: 'Lleva al profesional de salud la etiqueta y una lista de todos tus medicamentos y suplementos. Pregunta por interacciones, duplicación de nutrientes y necesidad real del producto. Conserva el comprobante de compra y reporta cualquier reacción adversa.' },
+  ], source: 'https://ods.od.nih.gov/HealthInformation/DS_WhatYouNeedToKnow.aspx' },
+] as const;
+
+export function guideText(guide: (typeof guides)[number]) {
+  return `${guide.title}\nsaludynegociodigital · Guía educativa\n\n${guide.subtitle}\n\n${guide.sections.map(s => `${s.title}\n${s.text}`).join('\n\n')}\n\nFuente: ${guide.source}\n\nMaterial educativo independiente. No es una publicación oficial de 4Life ni sustituye asesoramiento médico. Consulta la etiqueta de tu país y a un profesional de salud.`;
+}

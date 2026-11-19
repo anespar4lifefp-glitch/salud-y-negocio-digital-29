@@ -1,23 +1,50 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, ShieldCheck, Leaf, BookOpen, Bot, Globe, Workflow, Megaphone, MessageCircle, Mail, Phone, Linkedin, Instagram, Facebook, Play, Music2, CreditCard } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Brand, SiteHeader, shopUrl, whatsappUrl } from '@/components/site-header';
+import { guides } from '@/lib/education';
+import storefront from '@/assets/business-storefront-clean.jpg.asset.json';
+import plus from '@/assets/transfer-factor-plus.png.asset.json';
+import tri from '@/assets/transfer-factor-trifactor.png.asset.json';
+import rio from '@/assets/riovida.png.asset.json';
+import stix from '@/assets/riovida-stix.png.asset.json';
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
+const products = [
+  { name: 'Transfer Factor Plus', category: 'Transfer Factor', format: 'Cápsulas', image: plus.url, label: 'FÓRMULA PLUS', description: 'Fórmula con Transfer Factor, mezcla de hongos y zinc.' },
+  { name: 'Transfer Factor Tri-Factor', category: 'Transfer Factor', format: 'Cápsulas', image: tri.url, label: 'TRI-FACTOR', description: 'Suplemento con extractos de calostro bovino y huevo.' },
+  { name: 'RioVida Tri-Factor', category: 'RioVida', format: 'Bebida', image: rio.url, label: 'MEZCLA DE FRUTAS', description: 'Transfer Factor y frutas en una presentación líquida.' },
+  { name: 'RioVida Stix', category: 'RioVida', format: 'Sobres', image: stix.url, label: 'FORMATO PRÁCTICO', description: 'La familia RioVida en sobres de polvo para preparar.' },
+];
+const services = [
+  { icon: Globe, title: 'Páginas web y tiendas', text: 'Tu negocio en línea con una identidad propia, catálogo y experiencia de compra.', subject: 'una página web' },
+  { icon: Bot, title: 'Agentes de IA', text: 'Soluciones de atención para WhatsApp, llamadas y email, adaptadas a tu negocio.', subject: 'agentes de IA' },
+  { icon: Workflow, title: 'Automatización y CRM', text: 'Organiza tus contactos, seguimiento comercial y tareas en un solo flujo.', subject: 'automatización y CRM' },
+  { icon: Megaphone, title: 'Marketing digital', text: 'Estrategia, contenido y campañas para Facebook, Instagram, TikTok y LinkedIn.', subject: 'marketing digital' },
+];
+
+export const Route = createFileRoute('/')({
+  head: () => ({ meta: [{ title: 'saludynegociodigital | Suplementos 4Life y agencia IA' }, { name: 'description', content: 'Descubre suplementos 4Life, guías educativas gratuitas y servicios de páginas web, agentes IA y marketing digital con Antonio Espinoza.' }, { property: 'og:title', content: 'saludynegociodigital | Bienestar y soluciones IA' }, { property: 'og:description', content: 'Productos 4Life, ebooks educativos y una agencia de inteligencia artificial para tu negocio.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' }] }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const [filter, setFilter] = useState('Todos');
+  const [carouselRef, carousel] = useEmblaCarousel({ align: 'start', loop: true });
+  const visibleProducts = products.filter(p => filter === 'Todos' || p.category === filter);
+  useEffect(() => { if (!carousel || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const interval = window.setInterval(() => { if (!document.hidden) carousel.scrollNext(); }, 6500); return () => window.clearInterval(interval); }, [carousel]);
+  useEffect(() => { carousel?.reInit(); carousel?.scrollTo(0); }, [carousel, filter]);
+  return <>
+    <SiteHeader />
+    <main>
+      <section className="hero"><img className="hero-photo" src={storefront.url} alt="Imagen del negocio saludynegociodigital compartida por Antonio Espinoza" fetchPriority="high" /><div className="site-width hero-inner"><div className="eyebrow">BIENESTAR Y OPORTUNIDADES DIGITALES</div><h1>saludynegociodigital<span>Cuida de ti.<br />Impulsa tu negocio.</span></h1><p className="hero-description">Suplementos 4Life, conocimiento para tu bienestar y soluciones de inteligencia artificial para crecer en el mundo digital.</p><div className="hero-buttons"><Button variant="hero" size="lg" asChild><a href="#productos">Explorar productos <ArrowRight /></a></Button><Button variant="heroOutline" size="lg" asChild><a href="#agencia">Conoce nuestra agencia <ArrowUpRight /></a></Button></div><div className="hero-note"><ShieldCheck size={15} /> Productos 4Life · Atención personalizada · Educación responsable</div></div></section>
+      <div className="trust-band"><div className="site-width trust-inner">{[{ icon: Leaf, title: 'Bienestar consciente', sub: 'Suplementos alimenticios 4Life' }, { icon: ShieldCheck, title: 'Compra en 4Life', sub: 'Acceso a la tienda oficial' }, { icon: BookOpen, title: 'Aprende y decide', sub: 'Guías educativas gratuitas' }, { icon: Bot, title: 'Tecnología para crecer', sub: 'Servicios de inteligencia artificial' }].map(item => <div className="trust-item" key={item.title}><item.icon /><div><strong>{item.title}</strong><small>{item.sub}</small></div></div>)}</div></div>
+      <section className="section site-width" id="productos"><div className="section-heading"><div><div className="eyebrow">TU BIENESTAR, PRIMERO</div><h2>Descubre la familia 4Life</h2><p className="section-description">Conoce los productos y elige con información.</p></div><Button variant="link" className="catalog-link" asChild><a href={shopUrl} target="_blank" rel="noopener noreferrer">Ver tienda 4Life <ArrowUpRight /></a></Button></div><div className="flex justify-between gap-3 items-start"><div className="filters">{['Todos', 'Transfer Factor', 'RioVida'].map(f => <Button size="sm" key={f} variant={filter === f ? 'filterActive' : 'filter'} onClick={() => setFilter(f)} aria-pressed={filter === f}>{f}</Button>)}</div><div className="carousel-controls"><Button variant="outline" size="icon" title="Productos anteriores" aria-label="Productos anteriores" onClick={() => carousel?.scrollPrev()}><ChevronLeft /></Button><Button variant="outline" size="icon" title="Siguientes productos" aria-label="Siguientes productos" onClick={() => carousel?.scrollNext()}><ChevronRight /></Button></div></div><div className="carousel-viewport" ref={carouselRef} aria-label="Carrusel de productos 4Life"><div className="carousel-track">{visibleProducts.map(product => <article className="product-card" key={product.name}><div className="product-visual"><span className="product-label">{product.label}</span><img src={product.image} alt={`Producto 4Life ${product.name}`} loading="lazy" /></div><div className="product-copy"><div className="product-category">4LIFE · {product.format}</div><h3>{product.name}</h3><p>{product.description}</p><div className="product-bottom"><small>Precio en tienda oficial</small><Button size="sm" variant="outline" asChild><a href={shopUrl} target="_blank" rel="noopener noreferrer">Ver en 4Life <ArrowUpRight /></a></Button></div></div></article>)}</div></div><p className="catalog-note">Fotografías de fichas oficiales 4Life. Presentación, fórmula, precio y disponibilidad sujetos al mercado. Los suplementos no sustituyen una alimentación equilibrada ni están destinados a diagnosticar, tratar, curar o prevenir enfermedades. <a className="underline" href="https://media2.4life.com/docs/product-profile-sheets/us/english/4life-transfer-factor-plus-trifactor.pdf" target="_blank" rel="noopener noreferrer">Consultar ficha oficial</a>.</p></section>
+      <section className="section agency-section" id="agencia"><div className="site-width"><div className="section-heading"><div><div className="eyebrow">TU SIGUIENTE PASO ES DIGITAL</div><h2>Una agencia de IA para tu negocio</h2><p className="section-description">Conecta tu marca, tus clientes y tus oportunidades con tecnología.</p></div><Button variant="outline" asChild className="catalog-link"><a href={`${whatsappUrl}?text=${encodeURIComponent('Hola Antonio, quiero una propuesta para mi negocio.')}`} target="_blank" rel="noopener noreferrer">Solicitar propuesta <ArrowUpRight /></a></Button></div><div className="services-grid">{services.map(service => <article className="service" key={service.title}><div className="service-icon"><service.icon size={21} /></div><h3>{service.title}</h3><p>{service.text}</p><a href={`${whatsappUrl}?text=${encodeURIComponent(`Hola Antonio, me interesa ${service.subject}.`)}`} target="_blank" rel="noopener noreferrer">Hablemos de tu proyecto <ArrowRight size={14} /></a></article>)}</div><div className="channel-row"><span><Facebook size={16} /> Facebook</span><span><Instagram size={16} /> Instagram</span><span><Music2 size={16} /> TikTok</span><span><Linkedin size={16} /> LinkedIn</span><span><Play size={16} /> Contenido para YouTube</span></div></div></section>
+      <section className="section site-width" id="ebooks"><div className="section-heading"><div><div className="eyebrow">CONOCIMIENTO QUE TE ACOMPAÑA</div><h2>Tu biblioteca de bienestar</h2><p className="section-description">Guías educativas gratuitas. Sin promesas, con información.</p></div><BookOpen className="text-brand-teal" size={30} /></div><div className="ebooks-grid">{guides.map(guide => <article className="ebook" key={guide.id}><div className="book-cover" aria-hidden="true"><span>SALUDYNEGOCIODIGITAL</span><strong>{guide.cover}</strong><BookOpen size={15} /></div><div><h3>{guide.title}</h3><p>{guide.subtitle}</p><Button variant="link" size="sm" asChild className="px-0"><Link to="/ebooks/$guideId" params={{ guideId: guide.id }}>Leer y descargar <ArrowRight /></Link></Button></div></article>)}</div></section>
+      <section className="contact-band" id="contacto"><div className="site-width contact-inner"><div><h2>Tu bienestar. Tu próximo proyecto.</h2><p>Conversa con Antonio y encontremos el siguiente paso para ti.</p></div><Button variant="hero" size="lg" asChild><a href={whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle /> Contactar por WhatsApp <ArrowUpRight /></a></Button></div></section>
+    </main>
+    <footer className="footer"><div className="site-width"><div className="footer-main"><div><Brand /><p className="section-description mt-3">Antonio Rafael Espinoza Arellano<br />Bienestar y negocios en una misma dirección.</p></div><div className="footer-contact"><a href="tel:+584124486046"><Phone size={14} /> +58 412 448 6046</a><a href="mailto:antonioespinozaa2010@hotmail.com"><Mail size={14} /> antonioespinozaa2010@hotmail.com</a><a href="https://www.linkedin.com/in/antonio-rafael-espinoza-arellano-654077339" target="_blank" rel="noopener noreferrer"><Linkedin size={14} /> Conectar con Antonio <ArrowUpRight size={12} /></a></div><div><p className="text-xs font-semibold flex gap-2 items-center"><CreditCard size={15} /> Cotizaciones en USD</p><p className="section-description mt-2">Tarjetas y criptomonedas: pendientes de activación.<br />USDT · USDC · Bitcoin · Ethereum</p></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} saludynegociodigital. Todos los derechos reservados.</span><span>Sitio independiente de Antonio Espinoza. 4Life es una marca de sus respectivos titulares.</span></div></div></footer><Button className="whatsapp-float" size="icon" asChild title="Escribir a Antonio por WhatsApp"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Escribir a Antonio por WhatsApp"><MessageCircle /></a></Button>
+  </>;
 }
