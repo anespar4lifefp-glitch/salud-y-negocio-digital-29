@@ -33,3 +33,4 @@ use the editor.
 - Keep the public product showcase separate from checkout; direct purchases to the supplied official store until a payment provider is connected, so prices and fulfilment are not fabricated.
 - Store educational article content in a browser-safe shared module and give each ebook its own route with printable output, so downloadable education stays reviewable and does not require inference.
 - Use the uploaded artwork's original logo and storefront crops without redrawing branding; keep uploaded media as asset pointers.
+- Keep manual receiving-wallet information separate from official product checkout and never imply transaction verification without a verified payment integration.
