@@ -34,3 +34,5 @@ use the editor.
 - Store educational article content in a browser-safe shared module and give each ebook its own route with printable output, so downloadable education stays reviewable and does not require inference.
 - Use the uploaded artwork's original logo and storefront crops without redrawing branding; keep uploaded media as asset pointers.
 - Keep manual receiving-wallet information separate from official product checkout and never imply transaction verification without a verified payment integration.
+- Use a public server function for single-shot educational catalog selection, with strict allowlisted IDs and a clinical-concern safety gate; never display free-form model medical advice or persist visitor wellness text.
+- Encode only the exact receiving address in the QR, with a quiet zone and explicit network label; never encode a transfer amount or initiate transactions.
