@@ -1,6 +1,6 @@
 # saludynegociodigital
-- [ ] Añadir orientador educativo AI Gateway para objetivos y preferencias, sin diagnósticos.
-- [ ] Añadir y verificar QR escaneable de la dirección Rabby en Base.
+- [x] Añadir orientador educativo AI Gateway para objetivos y preferencias, sin diagnósticos.
+- [x] Añadir y verificar QR escaneable de la dirección Rabby en Base.
 - [x] Crear la tienda con imagen del negocio, carrusel 4Life y enlaces de contacto.
 - [x] Crear ebooks educativos descargables y sección de agencia de IA.
 - [x] Verificar la página en móvil y escritorio.
