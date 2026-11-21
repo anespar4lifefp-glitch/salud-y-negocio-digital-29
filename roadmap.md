@@ -1,4 +1,5 @@
 # saludynegociodigital
+- [ ] Añadir chat de soporte basado en documentación y pedidos, con derivación humana ante incertidumbre: una conversación por cliente como opción predeterminada; pendiente documentación de ayuda, origen y acceso autorizado a pedidos, y elección de historial.
 - [x] Añadir orientador educativo AI Gateway para objetivos y preferencias, sin diagnósticos.
 - [x] Añadir y verificar QR escaneable de la dirección Rabby en Base.
 - [x] Crear la tienda con imagen del negocio, carrusel 4Life y enlaces de contacto.
