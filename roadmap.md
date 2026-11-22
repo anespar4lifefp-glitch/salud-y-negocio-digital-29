@@ -1,5 +1,5 @@
 # saludynegociodigital
-- [ ] Añadir widget de soporte: una conversación por cliente, historial privado en su cuenta, fuentes de ayuda, consulta privada de pedidos y tickets con historial; aviso a anespar4lifefp@gmail.com. Reglas recibidas; pendiente perfil para habilitar acceso, origen autorizado de pedidos y configuración de envío de avisos.
+- [ ] Añadir widget de soporte: una conversación por cliente, historial privado en su cuenta, perfil con nombre y preferencias, fuentes de ayuda, consulta privada de pedidos y tickets con historial; aviso a anespar4lifefp@gmail.com. Pendiente origen autorizado de pedidos y dominio propio para enviar avisos.
 - [x] Añadir orientador educativo AI Gateway para objetivos y preferencias, sin diagnósticos.
 - [x] Añadir y verificar QR escaneable de la dirección Rabby en Base.
 - [x] Crear la tienda con imagen del negocio, carrusel 4Life y enlaces de contacto.

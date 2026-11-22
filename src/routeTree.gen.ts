@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AyudaRouteImport } from './routes/ayuda'
+import { Route as ApiSupportRouteImport } from './routes/api/support'
 import { Route as EbooksGuideIdRouteImport } from './routes/ebooks.$guideId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AyudaRoute = AyudaRouteImport.update({
+  id: '/ayuda',
+  path: '/ayuda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSupportRoute = ApiSupportRouteImport.update({
+  id: '/api/support',
+  path: '/api/support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EbooksGuideIdRoute = EbooksGuideIdRouteImport.update({
@@ -25,27 +37,35 @@ const EbooksGuideIdRoute = EbooksGuideIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/api/support': typeof ApiSupportRoute
   '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/api/support': typeof ApiSupportRoute
   '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ayuda': typeof AyudaRoute
+  '/api/support': typeof ApiSupportRoute
   '/ebooks/$guideId': typeof EbooksGuideIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ebooks/$guideId'
+  fullPaths: '/' | '/ayuda' | '/api/support' | '/ebooks/$guideId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ebooks/$guideId'
-  id: '__root__' | '/' | '/ebooks/$guideId'
+  to: '/' | '/ayuda' | '/api/support' | '/ebooks/$guideId'
+  id: '__root__' | '/' | '/ayuda' | '/api/support' | '/ebooks/$guideId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AyudaRoute: typeof AyudaRoute
+  ApiSupportRoute: typeof ApiSupportRoute
   EbooksGuideIdRoute: typeof EbooksGuideIdRoute
 }
 
@@ -56,6 +76,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ayuda': {
+      id: '/ayuda'
+      path: '/ayuda'
+      fullPath: '/ayuda'
+      preLoaderRoute: typeof AyudaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/support': {
+      id: '/api/support'
+      path: '/api/support'
+      fullPath: '/api/support'
+      preLoaderRoute: typeof ApiSupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ebooks/$guideId': {
@@ -70,6 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AyudaRoute: AyudaRoute,
+  ApiSupportRoute: ApiSupportRoute,
   EbooksGuideIdRoute: EbooksGuideIdRoute,
 }
 export const routeTree = rootRouteImport

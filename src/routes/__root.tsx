@@ -8,7 +8,11 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
+import { ClientOnly } from '@tanstack/react-router';
+import { SupportSessionProvider } from '@/components/support-session';
+
+const SupportWidget = lazy(() => import('@/components/support-widget'));
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -124,7 +128,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SupportSessionProvider>
+        <Outlet />
+        <ClientOnly><Suspense fallback={null}><SupportWidget /></Suspense></ClientOnly>
+      </SupportSessionProvider>
     </QueryClientProvider>
   );
 }

@@ -79,6 +79,10 @@
 }
 
 :root {
+  --support-shadow: 0 12px 44px oklch(0.25 0.034 210 / .18);
+  --google-background: oklch(1 0 0);
+  --google-border: oklch(0.565 0.004 130);
+  --google-foreground: oklch(0.239 0 0);
   --radius: 0.5rem;
   --background: oklch(0.985 0.003 190);
   --foreground: oklch(0.25 0.034 210);
@@ -119,6 +123,10 @@
 }
 
 .dark {
+  --support-shadow: 0 12px 44px oklch(0 0 0 / .4);
+  --google-background: oklch(0.189 0.002 280);
+  --google-border: oklch(0.651 0.004 130);
+  --google-foreground: oklch(0.914 0.003 110);
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
@@ -297,6 +305,37 @@ h1,h2,h3 { font-family: var(--font-display); letter-spacing: 0; }
 @media print { header,footer,.whatsapp-float,.print-hide { display: none !important; } .article-shell { width: 100%; padding: 0; } }
 
 .wallet-qr { margin: 16px 0; width: 176px; }
+.support-launcher { position: fixed; right: 24px; bottom: 24px; z-index: 40; width: 48px; height: 48px; box-shadow: var(--support-shadow); }
+.support-panel { position: fixed; right: 24px; bottom: 84px; z-index: 40; width: min(420px, calc(100vw - 32px)); height: min(660px, calc(100dvh - 108px)); display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--support-shadow); overflow: hidden; }
+.support-header { display: flex; gap: 12px; align-items: center; padding: 14px 16px; background: var(--secondary); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.support-header img { width: 36px; height: 36px; object-fit: contain; }
+.support-header h2 { font-size: 16px; font-weight: 600; }
+.support-header p { font-size: 10px; color: var(--muted-foreground); overflow-wrap: anywhere; }
+.support-intro { padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+.support-intro h3 { font-size: 20px; line-height: 1.4; }
+.support-intro p { font-size: 12px; line-height: 1.8; color: var(--muted-foreground); }
+.google-signin { background: var(--google-background); border-color: var(--google-border); color: var(--google-foreground); width: 100%; gap: 10px; padding-inline: 12px; font-size: 14px; font-weight: 500; }
+.support-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.support-toolbar { padding: 8px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-shrink: 0; }
+.support-transcript { flex: 1; min-height: 0; overflow: hidden; }
+.support-transcript p,.support-transcript a { overflow-wrap: anywhere; }
+.support-transcript a { text-decoration: underline; }
+.support-transcript [data-streamdown] { font-size: 13px; line-height: 1.75; }
+.support-transcript .is-user a { color: inherit; }
+.support-suggestions { display: flex; gap: 8px; flex-wrap: wrap; }
+.support-composer { padding: 12px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.support-composer textarea { min-height: 62px; max-height: 100px; font-size: 13px; }
+.support-privacy { font-size: 10px; color: var(--muted-foreground); line-height: 1.6; margin-top: 8px; }
+.support-notice { padding: 12px; border-left: 3px solid var(--primary); background: var(--secondary); font-size: 12px; line-height: 1.7; }
+.support-ticket { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border); padding-top: 10px; font-size: 11px; }
+.support-ticket span { color: var(--muted-foreground); }
+.support-form-pane { flex: 1; min-height: 0; overflow-y: auto; padding: 14px; }
+.support-form { display: flex; flex-direction: column; gap: 10px; margin-block: 14px; }
+.support-form h3 { font-size: 20px; margin-bottom: 4px; }
+.support-form p { font-size: 12px; color: var(--muted-foreground); line-height: 1.6; }
+.support-form textarea { min-height: 90px; }
+@media(max-width: 760px) { .support-launcher { right: 16px; bottom: 16px; } .support-panel { right: 16px; bottom: 76px; height: min(660px, calc(100dvh - 92px)); } }
+@media print { .support-launcher,.support-panel { display: none !important; } }
 .wallet-qr svg { display: block; width: 176px; height: 176px; }
 .wallet-qr figcaption { font-size: 11px; color: var(--muted-foreground); margin-top: 6px; text-align: center; }
 .wellness-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }

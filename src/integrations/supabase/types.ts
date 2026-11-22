@@ -14,13 +14,197 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          display_name: string
+          id: string
+          preferences: string
+        }
+        Insert: {
+          display_name?: string
+          id: string
+          preferences?: string
+        }
+        Update: {
+          display_name?: string
+          id?: string
+          preferences?: string
+        }
+        Relationships: []
+      }
+      support_conversations: {
+        Row: {
+          created_at: string
+          id: string
+          processing_token: string | null
+          processing_until: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          processing_token?: string | null
+          processing_until?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          processing_token?: string | null
+          processing_until?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      support_messages: {
+        Row: {
+          conversation_id: string
+          created_at: string
+          id: string
+          parts: Json
+          role: string
+        }
+        Insert: {
+          conversation_id: string
+          created_at?: string
+          id?: string
+          parts: Json
+          role: string
+        }
+        Update: {
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          parts?: Json
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "support_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      support_orders: {
+        Row: {
+          customer_email: string
+          id: string
+          items_summary: string
+          order_number: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          customer_email: string
+          id?: string
+          items_summary: string
+          order_number: string
+          status: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          customer_email?: string
+          id?: string
+          items_summary?: string
+          order_number?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      support_tickets: {
+        Row: {
+          conversation_id: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notification_status: string
+          order_number: string
+          request_id: string
+          status: string
+          summary: string
+          transcript: Json
+          user_id: string
+        }
+        Insert: {
+          conversation_id: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notification_status?: string
+          order_number?: string
+          request_id: string
+          status?: string
+          summary: string
+          transcript: Json
+          user_id: string
+        }
+        Update: {
+          conversation_id?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notification_status?: string
+          order_number?: string
+          request_id?: string
+          status?: string
+          summary?: string
+          transcript?: Json
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "support_tickets_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "support_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      begin_support_turn: {
+        Args: { _conversation_id: string; _parts: Json; _token: string }
+        Returns: undefined
+      }
+      complete_support_turn: {
+        Args: {
+          _conversation_id: string
+          _parts: Json
+          _token: string
+          _user_id: string
+        }
+        Returns: string
+      }
+      finish_support_turn: {
+        Args: { _conversation_id: string; _parts: Json; _token: string }
+        Returns: string
+      }
+      open_support_conversation: { Args: never; Returns: string }
+      request_support_handoff: {
+        Args: {
+          _conversation_id: string
+          _email: string
+          _name: string
+          _order_number: string
+          _request_id: string
+          _summary: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
