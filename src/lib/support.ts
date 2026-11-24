@@ -7,7 +7,7 @@ export const helpArticles = [
   { id: 'pagos', title: 'Pagos y cotizaciones', text: 'Los servicios se cotizan en USD. Los pagos con tarjeta están pendientes de activación. Antes de enviar criptomonedas, coordina con Antonio; la dirección Rabby indicada corresponde a Base, no a Ethereum mainnet ni a Bitcoin nativo. La página no verifica transferencias.', href: '/#contacto' },
   { id: 'servicios', title: 'Servicios digitales', text: 'Antonio ofrece creación de páginas web, tiendas, agentes de IA, automatización y CRM, y marketing digital. Solicita una propuesta personalizada; no hay una tarifa fija publicada.', href: '/#agencia' },
   { id: 'seguridad', title: 'Información responsable sobre suplementos', text: 'Los suplementos no diagnostican, tratan, curan ni previenen enfermedades. Revisa la etiqueta de tu país y consulta a un profesional de salud sobre medicamentos, alergias, embarazo o condiciones médicas. No ofrecemos diagnósticos, dosis ni tratamientos.', href: '/ebooks/suplementos' },
-  { id: 'contacto', title: 'Contactar con Antonio', text: 'Puedes contactar con Antonio Rafael Espinoza Arellano por WhatsApp en +58 412 448 6046 o por correo en antonioespinozaa2010@hotmail.com. No hay un horario ni un plazo de respuesta publicado.', href: 'https://wa.me/584124486046' },
+  { id: 'contacto', title: 'Contactar con Antonio', text: 'Puedes contactar con Antonio Rafael Espinoza Arellano por WhatsApp en +58 412 448 6046 o por correo en anespar4lifefp@gmail.com. No hay un horario ni un plazo de respuesta publicado.', href: 'https://wa.me/584124486046' },
 ] as const;
 
 export const articleId = z.enum(['compras', 'guias', 'pagos', 'servicios', 'seguridad', 'contacto']);
