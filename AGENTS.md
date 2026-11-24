@@ -36,3 +36,5 @@ use the editor.
 - Keep manual receiving-wallet information separate from official product checkout and never imply transaction verification without a verified payment integration.
 - Use a public server function for single-shot educational catalog selection, with strict allowlisted IDs and a clinical-concern safety gate; never display free-form model medical advice or persist visitor wellness text.
 - Encode only the exact receiving address in the QR, with a quiet zone and explicit network label; never encode a transfer amount or initiate transactions.
+- Support chat runs through an authenticated server route; the model only selects allowlisted help articles or a handoff, and orders are shown only when account, number and email match, so answers and order data are never invented or leaked.
+- Assistant support messages are written only with the privileged completion function after ownership checks, so customers cannot forge replies.

@@ -1,7 +1,9 @@
 # saludynegociodigital
-- [ ] Usar anespar4lifefp@gmail.com como correo de contacto, notificaciones y receptor PayPal; quitar Hotmail del sitio.
+- [x] Usar anespar4lifefp@gmail.com como correo de contacto en el sitio; Hotmail eliminado.
 - [ ] Configurar cobro con PayPal: pendiente conectar la cuenta de PayPal y definir precios de los servicios.
-- [ ] Añadir widget de soporte: una conversación por cliente, historial privado en su cuenta, perfil con nombre y preferencias, fuentes de ayuda, consulta privada de pedidos y tickets con historial; aviso a anespar4lifefp@gmail.com. Pendiente origen autorizado de pedidos y dominio propio para enviar avisos.
+- [x] Widget de soporte con historial privado, perfil, ayuda documentada, consulta privada de pedidos y solicitudes de atención humana.
+- [ ] Avisos por correo a anespar4lifefp@gmail.com: pendiente un dominio propio para enviar correos.
+- [ ] Cargar pedidos reales en el soporte: pendiente indicar la tienda o sistema de pedidos.
 - [x] Añadir orientador educativo AI Gateway para objetivos y preferencias, sin diagnósticos.
 - [x] Añadir y verificar QR escaneable de la dirección Rabby en Base.
 - [x] Crear la tienda con imagen del negocio, carrusel 4Life y enlaces de contacto.
